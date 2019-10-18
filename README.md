@@ -1,5 +1,5 @@
 # ConnectFour
-Write your own strategy and versus other players in a game of ConnectFour
+Write your own strategy and compete against other players in a game of ConnectFour
 
 > Below are the basic concepts in my eyes, add comments or other ideas below!
 ~ Lewis
