@@ -23,6 +23,11 @@ Write your own strategy and compete against other players in a game of ConnectFo
 
 ## Game View
 
+Rough implementation of the game view, install the `colorama` package and then check it out with:
+```python
+python console/console_connect_four.py
+```
+
 - Display information about the start of the game ("Game 1 Robot vs Ninja")
 - Display the board after each turn
 - Display information about the end of the game ("Robot wins!", "Ninja made a mistake and lost!")
