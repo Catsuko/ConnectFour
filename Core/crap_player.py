@@ -11,3 +11,6 @@ class CrapPlayer:
             if top_row[x] == 0:
                 return x
         return -1
+
+    def __str__(self):
+        return "Crap Player " + self.name
