@@ -10,13 +10,13 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0 ,0]]
 
-gameScale = 2
-gameView = ConsoleGameView(gameScale)
-gameView.print_start("Robot", "Ninja")
+game_scale = 2
+game_view = ConsoleGameView(game_scale)
+game_view.print_start("Robot", "Ninja")
 
-boardHeight = len(board)
-for i in range(boardHeight):
-    board[boardHeight - i - 1][3] = 1 if i % 2 == 0 else 2
-    gameView.print_board(board)
+board_height = len(board)
+for i in range(board_height):
+    board[board_height - i - 1][3] = 1 if i % 2 == 0 else 2
+    game_view.print_board(board)
     time.sleep(0.2)
-gameView.print_end("Robot")
+game_view.print_end("Robot")
