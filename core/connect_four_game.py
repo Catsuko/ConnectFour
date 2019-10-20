@@ -4,11 +4,15 @@ class ConnectFourGame:
         self.width = width
         self.height = height
 
+    # TODO: Handle Draw results
+    # TODO: Refine the return result into something more useful
     def play(self, player1, player2, view=None):
         turn = 0
         players = [player1, player2]
         board = [[0] * self.width for i in range(self.height)]
-
+        
+        # TODO: Replace with !grid.Full()?
+        # TODO: Catch errors that occur during a turn and auto lose the player that made the error
         while True:
             current_token = (turn % 2) + 1
             current_player = players[current_token - 1]
@@ -23,7 +27,8 @@ class ConnectFourGame:
                 if board[y][desired_column] == 0:
                     board[y][desired_column] = current_token
                     break
-                    
+            
+            # TODO: Add Null Check when a view isn't supplied or removed optional view parameter
             view.print_board(board)
 
             # TODO: Optimize this garb, maybe better as a responsibility of the grid?
