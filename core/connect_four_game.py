@@ -11,13 +11,14 @@ class ConnectFourGame:
         players = [player1, player2]
         board = [[0] * self.width for i in range(self.height)]
         
-        # TODO: Replace with !grid.Full()?
+        # TODO: Replace while condition with !grid.Full()?
         # TODO: Catch errors that occur during a turn and auto lose the player that made the error
         while True:
             current_token = (turn % 2) + 1
             current_player = players[current_token - 1]
             desired_column = current_player.place_token(current_token, board)
             
+            # TODO: Not needed once we are catching errors
             if desired_column < 0:
                 break
 
