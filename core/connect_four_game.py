@@ -1,41 +1,32 @@
 class ConnectFourGame:
     
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
+    def __init__(self, board):
+        self.board = board
 
     # TODO: Handle Draw results
     # TODO: Refine the return result into something more useful
-    def play(self, player1, player2, view=None):
+    def play(self, player1, player2, view):
         turn = 0
         players = [player1, player2]
-        board = [[0] * self.width for i in range(self.height)]
+        board = self.board.fresh()
         
-        # TODO: Replace while condition with !grid.Full()?
+        # TODO: Replace while condition with !board.Full()?
         # TODO: Catch errors that occur during a turn and auto lose the player that made the error
         while True:
+            # TODO: Token object? token.other and token.value would be useful methods
             current_token = (turn % 2) + 1
             current_player = players[current_token - 1]
-            desired_column = current_player.place_token(current_token, board)
-            
-            # TODO: Not needed once we are catching errors
-            if desired_column < 0:
-                break
+            # TODO: Pass board to player and provide helpful methods instead of 2d array
+            desired_column = current_player.place_token(current_token, board.to_array())
+            board = board.place_token(desired_column)
+            board_array = board.to_array()
+            # TODO: Add print method to board and then we can remove the to_array method.
+            view.print_board(board_array)
 
-            # TODO: Refactor this into a Grid object?
-            #       Would be nice to do grid.place(token, column) and have it sort out the rest
-            for y in range(len(board)-1, -1, -1):
-                if board[y][desired_column] == 0:
-                    board[y][desired_column] = current_token
-                    break
-            
-            # TODO: Add Null Check when a view isn't supplied or removed optional view parameter
-            view.print_board(board)
-
-            # TODO: Optimize this garb, maybe better as a responsibility of the grid?
-            for y in range(len(board)):
-                for x in range(len(board[y])):
-                    if self.check_for_four(x, y, board):
+            # TODO: Move this into Board
+            for y in range(len(board_array)):
+                for x in range(len(board_array[y])):
+                    if self.check_for_four(x, y, board_array):
                         view.print_end(current_player)
                         return current_player
             
