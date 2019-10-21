@@ -1,8 +1,14 @@
 # ConnectFour
 Write your own strategy and compete against other players in a game of ConnectFour
 
-> Below are the basic concepts in my eyes, add comments or other ideas below!
-~ Lewis
+## Usage
+
+Implement a strategy by subclassing `core.strategy` and then pit it against yourself to test! Check out `console_connect_four.py` for a simple example.
+
+Run the game with:
+```python
+python console_connect_four.py
+```
 
 ## Game
 
