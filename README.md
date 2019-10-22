@@ -11,14 +11,14 @@ python console_connect_four.py
 
 Making some simple tweaks to `console_connect_four.py` can give neat results!
 
-You can have pit the bot against itself for a uneventful showdown:
+You can pit the bot against itself for a uneventful showdown:
 ```python
 player1 = Player(name="Bot", strategy=LeftToRightStrategy())
 player2 = Player(name="Player", strategy=StdInStrategy())
 game.play(player1, player1, game_view)
 ```
 
-Or make play against a friend by having player2 play themselves:
+Or play against a friend by having a player with the `StdInStrategy` play themselves:
 ```python
 player1 = Player(name="Bot", strategy=LeftToRightStrategy())
 player2 = Player(name="Player", strategy=StdInStrategy())
