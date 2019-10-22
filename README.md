@@ -1,57 +1,91 @@
 # ConnectFour
+
 Write your own strategy and compete against other players in a game of ConnectFour
 
 ## Usage
-
-Implement a strategy by subclassing `core.strategy` and then pit it against yourself to test! Check out `console_connect_four.py` for a simple example.
 
 Run the game with:
 ```python
 python console_connect_four.py
 ```
 
-## Game
+Making some simple tweaks to `console_connect_four.py` can give neat results!
 
-- Matches two players against each other and determines the winner
-
-### Rules
-
-- 7x6 grid
-- Players take turns placing tokens into a column of the grid
-- Tokens fall and occupy the bottom-most vacant slot of the column
-- A player is declared the winner if four of their tokens form a straight line. The line can be vertical, horizontal or diagonal
-- A player is declared the winner if their opponent makes an error while selecting a column or selects an invalid column
-
-### Extensions
-
- - A BestOf Game Decorator would be useful, this would play multiple games to determine the winner in a BestOf(N) format.
- - Game Decorators that randomize or alternate who goes first would be handy down the line, otherwise we might find going first is a huge advantage or disadvantage
-
-## Game View
-
-Rough implementation of the game view, install the `colorama` package and then check it out with:
+You can have pit the bot against itself for a uneventful showdown:
 ```python
-python console/console_connect_four.py
+player1 = Player(name="Bot", strategy=LeftToRightStrategy())
+player2 = Player(name="Player", strategy=StdInStrategy())
+game.play(player1, player1, game_view)
 ```
 
-- Display information about the start of the game ("Game 1 Robot vs Ninja")
-- Display the board after each turn
-- Display information about the end of the game ("Robot wins!", "Ninja made a mistake and lost!")
+Or make play against a friend by having player2 play themselves:
+```python
+player1 = Player(name="Bot", strategy=LeftToRightStrategy())
+player2 = Player(name="Player", strategy=StdInStrategy())
+game.play(player2, player2, game_view)
+```
 
-### Extensions
+### Writing your own Strategy
 
- - I would like a TextFileGameView that would write each turn into a text file so I can review why my algorithm got its ass kicked and make improvements.
+To write a new strategy, add a new subclass of the `core.Strategy` class. It has a single responsibility, to determine which column the player should place their token in.
+```python
+class Strategy:
 
-## Player
+    def place_token(self, token, board):
+        raise NotImplementedError("Implement this method in your subclass.")
+```
+The token argument specifies which token the player is placing, either a `1` or a `2`. Use this to identify which tokens in the board are yours and plan accordingly.
 
- - Name for ID and display
- - Select which column they wish to place a token in
- 
- ### Extensions
- 
- - Even though the aim is to pit algorithms against each other, we could construct a player that listens to input and then have a functioning ConnectFour game!
+The board argument is a 2D array that represents the current state of the game. Here is an example of how the board might be filled:
+```python
+board = [
+	[0, 0, 0, 0, 0, 0, 0]
+	[0, 0, 0, 0, 0, 0, 0]
+	[0, 0, 0, 0, 0, 0, 0]
+	[0, 0, 0, 0, 0, 0, 0]
+	[0, 0, 0, 0, 0, 0, 0]
+	[0, 0, 1, 0, 0, 2, 0]
+]
+```
+A `0` represents an empty spot, a `1` represents a token placed by the first player and a `2` represents a token placed by the second player. When a player chooses a column, their token will then be placed in the lowest empty spot for that column.
 
-## PlayerRepository
+The output of the `place_token` method should be the index of the column that you want to place your token in. Placing a token in a out-of-bounds index or into a column that is full will mean that you lose the game, so choose carefully!
 
- - Get player with given name
- - Get all available players
+### Testing your Strategy
+
+To test your strategy, import it into the `console_connect_four.py` file. If you had added `/core/example_strategy.py` then you would import it by adding the following line to the top of `console_connect_four.py`:
+```python
+from core.example_strategy import ExampleStrategy
+```
+
+From here, pass an instance of your strategy to one of the players and then run the file.
+```python
+#player1 = Player(name="Bot", strategy=LeftToRightStrategy())
+player1 = Player(name="Example Bot", strategy=ExampleStrategy())
+player2 = Player(name="Player", strategy=StdInStrategy())
+game.play(player1, player2, game_view)
+```
+
+See if it can beat `LeftToRightStrategy` and experiment with letting it go first and second.
+
+### Example Implementation: LeftToRightStrategy
+
+For an easy example, try reading through `/core/left_to_right_strategy.py`
+```python
+from .strategy import Strategy
+
+class LeftToRightStrategy(Strategy):
+
+    def place_token(self, token, board):
+        top_row = board[0]
+        for x in range(len(top_row)):
+            if top_row[x] == 0:
+                return x
+        return -1
+
+```
+
+If none of the top rows are empty then returning -1 essentially means giving up because it is not a valid column index.
+
+
+
