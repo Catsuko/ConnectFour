@@ -1,6 +1,6 @@
 # ConnectFour
 
-Write your own strategy and compete against other players in a game of ConnectFour
+Write your own strategy and compete against other algorithms in a game of ConnectFour
 
 ## Usage
 
