@@ -13,16 +13,15 @@ Making some simple tweaks to `console_connect_four.py` can give neat results!
 
 You can pit the bot against itself for a uneventful showdown:
 ```python
-player1 = Player(name="Bot", strategy=LeftToRightStrategy())
-player2 = Player(name="Player", strategy=StdInStrategy())
-game.play(player1, player1, game_view)
+player_bot = Player(name="Bot", strategy=LeftToRightStrategy())
+game.play(player_bot, player_bot, game_view)
 ```
 
 Or play against a friend by having a player with the `StdInStrategy` play themselves:
 ```python
-player1 = Player(name="Bot", strategy=LeftToRightStrategy())
-player2 = Player(name="Player", strategy=StdInStrategy())
-game.play(player2, player2, game_view)
+player_bot = Player(name="Bot", strategy=LeftToRightStrategy())
+player_person = Player(name="Player", strategy=StdInStrategy())
+game.play(player_bot, player_person_, game_view)
 ```
 
 ### Writing your own Strategy
