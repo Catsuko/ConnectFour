@@ -2,9 +2,7 @@ from os import listdir
 from os.path import isfile, join, basename
 import re
 from importlib import import_module
-
-class InsufficientStrategiesError(Exception):
-    pass
+from core.errors import InsufficientStrategiesError
 
 class StrategyLoader:
     
