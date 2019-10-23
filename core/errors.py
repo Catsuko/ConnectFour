@@ -1,0 +1,2 @@
+class InsufficientStrategiesError(Exception):
+    pass
