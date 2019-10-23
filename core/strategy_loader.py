@@ -18,9 +18,9 @@ class StrategyLoader:
             raise InsufficientStrategiesError("Less that two strategies were found.")
 
     def _import_from_file(self, file_name):
-        file = open(join(self.strategies_dir, file_name))
-        content = file.read()        
-        file.close()        
+        with open(join(self.strategies_dir, file_name)) as file:
+            content = file.read()
+        
         package = re.sub("\.\/", "", self.strategies_dir)
         module_name = re.sub("\.py", "", file_name)
         new_module = import_module(package+"."+module_name,".")
