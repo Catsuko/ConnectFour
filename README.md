@@ -19,9 +19,8 @@ game.play(player_bot, player_bot, game_view)
 
 Or play against a friend by having a player with the `StdInStrategy` play themselves:
 ```python
-player_bot = Player(name="Bot", strategy=LeftToRightStrategy())
 player_person = Player(name="Player", strategy=StdInStrategy())
-game.play(player_bot, player_person_, game_view)
+game.play(player_person, player_person, game_view)
 ```
 
 ### Writing your own Strategy
