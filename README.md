@@ -1,6 +1,6 @@
 # ConnectFour
 
-Write your own strategy and compete against other algorithms in a game of ConnectFour
+Write your own strategy and compete against other players in a game of ConnectFour
 
 ## Usage
 
@@ -13,16 +13,14 @@ Making some simple tweaks to `console_connect_four.py` can give neat results!
 
 You can pit the bot against itself for a uneventful showdown:
 ```python
-player1 = Player(name="Bot", strategy=LeftToRightStrategy())
-player2 = Player(name="Player", strategy=StdInStrategy())
-game.play(player1, player1, game_view)
+player_bot = Player(name="Bot", strategy=LeftToRightStrategy())
+game.play(player_bot, player_bot, game_view)
 ```
 
 Or play against a friend by having a player with the `StdInStrategy` play themselves:
 ```python
-player1 = Player(name="Bot", strategy=LeftToRightStrategy())
-player2 = Player(name="Player", strategy=StdInStrategy())
-game.play(player2, player2, game_view)
+player_person = Player(name="Player", strategy=StdInStrategy())
+game.play(player_person, player_person, game_view)
 ```
 
 ### Writing your own Strategy
