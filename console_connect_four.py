@@ -11,8 +11,6 @@ game_view = ConsoleGameView(scale=2)
 
 strategy_loader = StrategyLoader(strategies_dir="strategies")
 strategy_loader.find_and_load()
-if len(strategy_loader) < 2:
-    exit()
 
 player1 = Player(name="Bot", strategy=strategy_loader[0])
 player2 = Player(name="Player", strategy=strategy_loader[1])
