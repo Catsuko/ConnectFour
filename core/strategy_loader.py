@@ -2,7 +2,7 @@ from os import listdir
 from os.path import isfile, join, basename
 import re
 from importlib import import_module
-from core.errors import InsufficientStrategiesError
+from core.errors import InsufficientStrategiesError, MissingExportFunctionError
 
 class StrategyLoader:
     
@@ -18,13 +18,13 @@ class StrategyLoader:
             raise InsufficientStrategiesError("Less that two strategies were found.")
 
     def _import_from_file(self, file_name):
-        with open(join(self.strategies_dir, file_name)) as file:
-            content = file.read()
-        
         package = re.sub("\.\/", "", self.strategies_dir)
         module_name = re.sub("\.py", "", file_name)
         new_module = import_module(package+"."+module_name,".")
-        self.strategies.append(new_module.create_strategy())
+        if "export_stragegy" in dir(new_module):
+            self.strategies.append(new_module.export_stragegy())
+        else:
+            raise MissingExportFunctionError("Module in {file_name} is missing export_strategy.")
     
     def __len__(self):
         return len(self.strategies)
