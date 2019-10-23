@@ -9,7 +9,7 @@ from views.console_game_view import ConsoleGameView
 game = ConnectFourGame(Board(width=7, height=6))
 game_view = ConsoleGameView(scale=2)
 
-strategy_loader = StrategyLoader("strategies")
+strategy_loader = StrategyLoader(strategies_dir="strategies")
 strategy_loader.find_and_load()
 if len(strategy_loader) < 2:
     exit()
