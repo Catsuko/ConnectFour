@@ -24,7 +24,7 @@ class StrategyLoader:
         if "export_strategy" in dir(new_module):
             self.strategies.append(new_module.export_strategy())
         else:
-            raise MissingExportFunctionError("Module in {file_name} is missing export_strategy.")
+            raise MissingExportFunctionError("Module in {file_name} is missing export_strategy.".format(**locals()))
     
     def __len__(self):
         return len(self.strategies)
