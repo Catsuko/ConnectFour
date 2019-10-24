@@ -21,8 +21,8 @@ class StrategyLoader:
         package = re.sub("\.\/", "", self.strategies_dir)
         module_name = re.sub("\.py", "", file_name)
         new_module = import_module(package+"."+module_name,".")
-        if "export_stragegy" in dir(new_module):
-            self.strategies.append(new_module.export_stragegy())
+        if "export_strategy" in dir(new_module):
+            self.strategies.append(new_module.export_strategy())
         else:
             raise MissingExportFunctionError("Module in {file_name} is missing export_strategy.")
     

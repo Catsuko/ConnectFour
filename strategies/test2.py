@@ -12,5 +12,5 @@ class TestStrategy(Strategy):
                 return x
         return -1
 
-def export_stragegy():
+def export_strategy():
     return TestStrategy()
