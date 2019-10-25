@@ -9,7 +9,7 @@ class ConnectFourGame:
         turn = 0
         players = [player1, player2]
         board = self.board.fresh()
-        
+        view.print_start(player1, player2)    
         # TODO: Replace while condition with !board.Full()?
         # TODO: Catch errors that occur during a turn and auto lose the player that made the error
         while True:
@@ -27,7 +27,7 @@ class ConnectFourGame:
             for y in range(len(board_array)):
                 for x in range(len(board_array[y])):
                     if self.check_for_four(x, y, board_array):
-                        view.print_end(current_player)
+                        view.print_end(board_array, current_player)
                         return current_player
             
             turn = turn + 1
