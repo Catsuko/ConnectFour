@@ -3,3 +3,6 @@ class InsufficientStrategiesError(Exception):
 
 class MissingExportFunctionError(Exception):
     pass
+
+class TokenPlacementError(Exception):
+    pass
