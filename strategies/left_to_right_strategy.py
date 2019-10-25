@@ -1,4 +1,4 @@
-from .strategy import Strategy
+from core.strategy import Strategy
 
 class LeftToRightStrategy(Strategy):
 
@@ -8,3 +8,6 @@ class LeftToRightStrategy(Strategy):
             if top_row[x] == 0:
                 return x
         return -1
+
+def export_strategy():
+    return LeftToRightStrategy()

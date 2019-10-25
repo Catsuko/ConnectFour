@@ -1,4 +1,4 @@
-from .strategy import Strategy
+from core.strategy import Strategy
 
 class StdInStrategy(Strategy):
 
@@ -7,3 +7,6 @@ class StdInStrategy(Strategy):
         key = input("Select a column and press enter (%s-%s)\n" % (1,len(board[0])))
         print()
         return int(key) - 1
+
+def export_strategy():
+    return StdInStrategy()
