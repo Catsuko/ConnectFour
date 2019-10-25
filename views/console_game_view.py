@@ -26,7 +26,7 @@ class ConsoleGameView:
         print(Style.RESET_ALL, flush=True)
         time.sleep(self.delay)
 
-    def print_end(self, winner):
+    def print_end(self, board, winner):
         print()
         print("%s won!" % winner)
         print()
