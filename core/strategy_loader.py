@@ -10,9 +10,9 @@ class StrategyLoader:
         self.strategies = []
         self.strategies_dir = strategies_dir
 
-    def find_and_load(self):
+    def _find_and_load(self):
         self.strategies.clear()
-        python_files = [file for file in listdir(self.strategies_dir) if isfile(join(self.strategies_dir, file)) and re.search("[a-zA-Z_0-9]+[\.][p][y]",file)]
+        python_files = [file for file in listdir(self.strategies_dir) if isfile(join(self.strategies_dir, file)) and re.search("[a-zA-Z_0-9]+[\.][p][y]",file)]        
         [self._import_from_file(file) for file in python_files if file != "__init__.py"]
         if len(self) < 2:
             raise InsufficientStrategiesError("Less that two strategies were found.")
@@ -25,6 +25,10 @@ class StrategyLoader:
             self.strategies.append(new_module.export_strategy())
         else:
             raise MissingExportFunctionError("Module in {file_name} is missing export_strategy.".format(**locals()))
+    
+    def get_all_players(self):
+        self._find_and_load()
+        return self.strategies
     
     def __len__(self):
         return len(self.strategies)
