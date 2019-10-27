@@ -18,7 +18,12 @@ class ConnectFourGame:
             current_player = players[current_token - 1]
             # TODO: Pass board to player and provide helpful methods instead of 2d array
             desired_column = current_player.place_token(current_token, board.to_array())
-            board = board.place_token(desired_column)
+            try:
+                board = board.place_token(desired_column)
+            except Exception:
+                winner = players[((turn+1) % 2)]
+                view.print_end(board_array, winner)
+                return winner
             board_array = board.to_array()
             # TODO: Add print method to board and then we can remove the to_array method.
             view.print_board(board_array)
