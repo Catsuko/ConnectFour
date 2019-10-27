@@ -9,6 +9,7 @@ class StrategyLoader:
     def __init__(self, strategies_dir):
         self.strategies = []
         self.strategies_dir = strategies_dir
+        self._find_and_load()
 
     def _find_and_load(self):
         self.strategies.clear()
@@ -25,10 +26,6 @@ class StrategyLoader:
             self.strategies.append(new_module.export_strategy())
         else:
             raise MissingExportFunctionError("Module in {file_name} is missing export_strategy.".format(**locals()))
-    
-    def get_all_players(self):
-        self._find_and_load()
-        return self.strategies
     
     def __len__(self):
         return len(self.strategies)
