@@ -1,3 +1,5 @@
+from .errors import TokenPlacementError
+
 class Board:
     
     def __init__(self, width, height, moves=[]):
@@ -6,6 +8,10 @@ class Board:
         self.moves = moves
 
     def place_token(self, column):
+        if column < 0 or column >= self.width:
+            raise TokenPlacementError("%s is outside the range of columns." % column)
+        if self.moves.count(column) >= self.height:
+            raise TokenPlacementError("Column %s is full." % column)  
         new_moves = self.moves[:]
         new_moves.append(column)
         return Board(self.width, self.height, new_moves)
