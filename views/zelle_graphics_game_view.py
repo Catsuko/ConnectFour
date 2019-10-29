@@ -32,7 +32,7 @@ class ZelleGraphicsGameView:
 
     def print_result(self, result):
         window = self.cached_window()
-        self.printToBottom("%s\n-->" % result, window)
+        self.printToBottom("%s\nPress any key to continue..." % result, window)
         window.getKey()
 
     def cached_window(self):
