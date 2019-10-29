@@ -23,9 +23,9 @@ class ConnectFourGame:
                 board = board.place_token(desired_column)
                 board_array = board.to_array()
                 view.print_board(board_array)
-            except Exception:
+            except Exception as error:
                 winner = players[((turn+1) % 2)]
-                view.print_result(winner)
+                view.print_result("%s won! %s caused a %s" % (winner, current_player, error.__class__.__name__))
                 return winner
             # TODO: Move this into Board
             for y in range(len(board_array)):
