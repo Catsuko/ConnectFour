@@ -5,12 +5,16 @@ class ZelleGraphicsGameView:
 
     def __init__(self, delay=0.2):
         self.window = None
+        self.top_label = None
+        self.bottom_label = None
         self.delay = delay
         self.circles = []
         self.colors = ["gainsboro", "yellow", "red"]
     
     def print_start(self, player1, player2):
-        Text(Point(350, 100), "%s vs %s" %(player1,player2,)).draw(self.cached_window())
+        window = self.cached_window()
+        self.printToTop("%s vs %s" %(player1,player2,), window)
+        self.printToBottom("", window)
 
     def print_board(self, board):
         window = self.cached_window()
@@ -26,14 +30,29 @@ class ZelleGraphicsGameView:
         window.redraw()
         time.sleep(self.delay)
 
-    def print_end(self, board, winner):
-        self.print_board(board)
+    def print_result(self, result):
         window = self.cached_window()
-        Text(Point(350, 500), "%s won\nPress any key to continue..." % winner).draw(window)
+        self.printToBottom("%s\n-->" % result, window)
         window.getKey()
 
     def cached_window(self):
         if self.window is None:
             self.window = GraphWin("Connect Four", 700, 600)
         return self.window
+
+    def printToTop(self, text, window):
+        if self.top_label == None:
+            self.top_label = Text(Point(350, 100), "")
+            self.top_label.draw(window)
+        self.top_label.setText(text)
+        window.redraw()
+
+    def printToBottom(self, text, window):
+        if self.bottom_label == None:
+            self.bottom_label = Text(Point(350, 500), "")
+            self.bottom_label.draw(window)
+        self.bottom_label.setText(text)
+        window.redraw()
+        
+        
         

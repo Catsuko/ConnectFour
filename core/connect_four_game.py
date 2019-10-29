@@ -9,7 +9,8 @@ class ConnectFourGame:
         turn = 0
         players = [player1, player2]
         board = self.board.fresh()
-        view.print_start(player1, player2)    
+        view.print_start(player1, player2)
+        view.print_board(board.to_array())
         # TODO: Replace while condition with !board.Full()?
         # TODO: Catch errors that occur during a turn and auto lose the player that made the error
         while True:
@@ -20,19 +21,17 @@ class ConnectFourGame:
             desired_column = current_player.place_token(current_token, board.to_array())
             try:
                 board = board.place_token(desired_column)
+                board_array = board.to_array()
+                view.print_board(board_array)
             except Exception:
                 winner = players[((turn+1) % 2)]
-                view.print_end(board_array, winner)
+                view.print_result(winner)
                 return winner
-            board_array = board.to_array()
-            # TODO: Add print method to board and then we can remove the to_array method.
-            view.print_board(board_array)
-
             # TODO: Move this into Board
             for y in range(len(board_array)):
                 for x in range(len(board_array[y])):
                     if self.check_for_four(x, y, board_array):
-                        view.print_end(board_array, current_player)
+                        view.print_result("%s got 4!" % current_player)
                         return current_player
             
             turn = turn + 1
