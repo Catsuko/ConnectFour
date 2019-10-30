@@ -10,9 +10,8 @@ class ConnectFourGame:
         players = [player1, player2]
         board = self.board.fresh()
         view.print_start(player1, player2)    
-        # TODO: Replace while condition with !board.Full()?
         # TODO: Catch errors that occur during a turn and auto lose the player that made the error
-        while True:
+        while not board.is_full():
             # TODO: Token object? token.other and token.value would be useful methods
             current_token = (turn % 2) + 1
             current_player = players[current_token - 1]
@@ -36,6 +35,7 @@ class ConnectFourGame:
                         return current_player
             
             turn = turn + 1
+        raise NotImplementedError("Draw")
 
     # TODO: Clean this up!
     def check_for_four(self, x, y, board):

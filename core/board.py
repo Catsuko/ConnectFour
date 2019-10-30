@@ -19,6 +19,9 @@ class Board:
     def fresh(self):
         return Board(self.width, self.height, [])
 
+    def is_full(self):
+        return len(self.moves) == self.width * self.height
+
     # TODO: Remove this method once we have refactored it out of connect_four_game
     def to_array(self):
         arr = [[0] * self.width for i in range(self.height)]   
