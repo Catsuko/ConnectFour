@@ -3,7 +3,6 @@ class ConnectFourGame:
     def __init__(self, board):
         self.board = board
 
-    # TODO: Handle Draw results
     # TODO: Refine the return result into something more useful
     def play(self, player1, player2, view):
         turn = 0
@@ -13,7 +12,7 @@ class ConnectFourGame:
         view.print_start(player1, player2)    
         # TODO: Replace while condition with !board.Full()?
         # TODO: Catch errors that occur during a turn and auto lose the player that made the error
-        while turn < len(board_array)*len(board_array[0]):
+        while turn <= len(board_array)*len(board_array[0]):
             # TODO: Token object? token.other and token.value would be useful methods
             current_token = (turn % 2) + 1
             current_player = players[current_token - 1]
