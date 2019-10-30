@@ -28,5 +28,8 @@ class ConsoleGameView:
 
     def print_end(self, board, winner):
         print()
-        print("%s won!" % winner)
+        if winner == 0:
+            print("no one won!")
+        else:
+            print("%s won!" % winner)
         print()
