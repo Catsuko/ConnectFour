@@ -51,9 +51,9 @@ The output of the `place_token` method should be the index of the column that yo
 
 ### Testing your Strategy
 
-To test your strategy, import it into the `console_connect_four.py` file. If you had added `/core/example_strategy.py` then you would import it by adding the following line to the top of `console_connect_four.py`:
+To test your strategy, import it into the `console_connect_four.py` file. If you had added `/strategies/example_strategy.py` then you would import it by adding the following line to the top of `console_connect_four.py`:
 ```python
-from core.example_strategy import ExampleStrategy
+from strategies.example_strategy import ExampleStrategy
 ```
 
 From here, pass an instance of your strategy to one of the players and then run the file.
@@ -68,7 +68,7 @@ See if it can beat `LeftToRightStrategy` and experiment with letting it go first
 
 ### Example Implementation: LeftToRightStrategy
 
-For an easy example, try reading through `/core/left_to_right_strategy.py`
+For an easy example, try reading through `/strategies/left_to_right_strategy.py`
 ```python
 from .strategy import Strategy
 
