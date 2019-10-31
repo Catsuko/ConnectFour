@@ -1,6 +1,6 @@
 from core.strategy import Strategy
 
-class SherryStrategy(Strategy):
+class CrossStrategy(Strategy):
     blocked = [0] * 1
 
     def place_token(self, token, board):
@@ -12,4 +12,4 @@ class SherryStrategy(Strategy):
         return 4
 
 def export_strategy():
-    return SherryStrategy()
+    return CrossStrategy()
