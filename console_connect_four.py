@@ -5,9 +5,9 @@ from core.strategy_loader import StrategyLoader
 from tournaments.round_robin_tournament import RoundRobinTournament
 from views.zelle_graphics_game_view import ZelleGraphicsGameView
 from views.console_game_view import ConsoleGameView
+from strategies.stdin_strategy import StdInStrategy
 
-strategy_loader = StrategyLoader(strategies_dir="strategies")
-tournament = RoundRobinTournament(strategy_loader, ConsoleGameView())
-results = tournament.run()
-print(results)
+game = ConnectFourGame(Board(7,6))
+view = ZelleGraphicsGameView(delay=0)
+game.play(Player("Me", StdInStrategy()), Player("You", StdInStrategy()), view)
 
