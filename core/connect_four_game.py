@@ -3,16 +3,16 @@ class ConnectFourGame:
     def __init__(self, board):
         self.board = board
 
-    # TODO: Handle Draw results
     # TODO: Refine the return result into something more useful
     def play(self, player1, player2, view):
         turn = 0
         players = [player1, player2]
         board = self.board.fresh()
+        board_array = board.to_array()
         view.print_start(player1, player2)    
         # TODO: Replace while condition with !board.Full()?
         # TODO: Catch errors that occur during a turn and auto lose the player that made the error
-        while True:
+        while turn <= len(board_array)*len(board_array[0]):
             # TODO: Token object? token.other and token.value would be useful methods
             current_token = (turn % 2) + 1
             current_player = players[current_token - 1]
@@ -36,6 +36,8 @@ class ConnectFourGame:
                         return current_player
             
             turn = turn + 1
+        view.print_end(board_array, 0)
+        return 0
 
     # TODO: Clean this up!
     def check_for_four(self, x, y, board):
@@ -50,6 +52,3 @@ class ConnectFourGame:
             if x <= len(board[y]) - 4 and y >= 3 and all(token == t for t in (board[y-1][x+1], board[y-2][x+2], board[y-3][x+3])):
                 return True
         return False
-            
-        
-        

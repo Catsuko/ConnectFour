@@ -29,7 +29,10 @@ class ZelleGraphicsGameView:
     def print_end(self, board, winner):
         self.print_board(board)
         window = self.cached_window()
-        Text(Point(350, 500), "%s won\nPress any key to continue..." % winner).draw(window)
+        if winner == 0:
+            Text(Point(350, 500), "Nobody won\nPress any key to continue...").draw(window)
+        else:
+            Text(Point(350, 500), "%s won\nPress any key to continue..." % winner).draw(window)
         window.getKey()
 
     def cached_window(self):
