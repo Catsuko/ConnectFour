@@ -13,7 +13,8 @@ class RegisteredPlayer:
             print("Which strategy would you like to use?")
             i = 0
             for strategy in self.strategies:
-                print("%d: %s" % (++i, strategy))
+                i += 1
+                print("%d: %s" % (i, strategy))
             self.strategy_index = int(input()) - 1
         return self.strategies[self.strategy_index]
 
