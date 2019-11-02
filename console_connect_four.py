@@ -9,5 +9,5 @@ from views.console_game_view import ConsoleGameView
 strategy_loader = StrategyLoader(strategies_dir="strategies")
 tournament = RoundRobinTournament(strategy_loader, ConsoleGameView())
 results = tournament.run()
-print(results)
+print('\n'.join(results))
 
