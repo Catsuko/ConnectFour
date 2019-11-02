@@ -1,3 +1,5 @@
+from .score import Score
+
 class ConnectFourGame:
     
     def __init__(self, board):
@@ -24,17 +26,17 @@ class ConnectFourGame:
             except Exception as error:
                 winner = players[((turn+1) % 2)]
                 view.print_result("%s won! %s caused a %s" % (winner, current_player, error.__class__.__name__))
-                return winner
+                return (winner, Score(1, 0, 0))
             # TODO: Move this into Board
             for y in range(len(board_array)):
                 for x in range(len(board_array[y])):
                     if self.check_for_four(x, y, board_array):
                         view.print_result("%s got 4!" % current_player)
-                        return current_player
+                        return (current_player, Score(1, 0, 0))
             
             turn = turn + 1
         view.print_result("Nobody won!")
-        return 0
+        return (None, Score(0, 1, 0))
 
     # TODO: Clean this up!
     def check_for_four(self, x, y, board):
