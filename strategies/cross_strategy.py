@@ -3,6 +3,9 @@ from core.strategy import Strategy
 class CrossStrategy(Strategy):
     blocked = [0] * 1
 
+    def board_length(self):
+      self.board_width = len(self.board[0])
+
     def place_token(self, token, board):
         row_to_check = board[3]
         for x in row_to_check:
