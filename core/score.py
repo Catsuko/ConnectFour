@@ -37,6 +37,6 @@ class Score:
     def total_games(self):
         return self.wins + self.draws + self.losses
 
-    def is_determined(self, remaining_games):
+    def is_determined(self, remaining_games):  
         return remaining_games <= 0 or abs(self.wins - self.losses) > remaining_games
         
