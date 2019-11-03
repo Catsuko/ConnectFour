@@ -1,5 +1,4 @@
-from core.connect_four_game import ConnectFourGame
-from core.board import Board
+from core.score import Score
 from itertools import permutations
 from functools import reduce
 
@@ -25,22 +24,21 @@ class RoundRobinTournament:
     def _clear_results(self, players):
         self.results.clear()
         for player in players:
-            self.results[player] = []
+            self.results[player] = Score(0,0,0)
 
     def _run_off_matches(self, players, view):
         self._clear_results(players)
         for match in self.matches:
             player1 = players[match[0]]
             player2 = players[match[1]]
-            winner = self.game.play(player1, player2, view)
-            loser = player2 if players[match[0]] == winner else player1
-            self.results[winner].append(loser)
-
+            outcome = self.game.play(player1, player2, view)
+            self.results[player1] = self.results[player1].join(outcome[1] if outcome[0] == player1 else outcome[1].invert())
+            self.results[player2] = self.results[player2].join(outcome[1] if outcome[0] == player2 else outcome[1].invert())
 
     def _get_ranking(self):
         ranks = []
-        [ranks.append((str(key), len(value))) for key, value in self.results.items()]
-        ranks.sort(key=lambda rank_tup: -rank_tup[1])
+        sorted_results = sorted(self.results.items(), key=lambda x: x[1], reverse=True)
+        [ranks.append("%s: %s" % (key, value)) for key, value in sorted_results]
         return ranks
 
     def run(self, players, view):
