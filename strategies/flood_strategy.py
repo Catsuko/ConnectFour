@@ -10,3 +10,5 @@ class FloodStrategy(Strategy):
                     return x
         return -1
 
+def export_strategy():
+    return FloodStrategy()

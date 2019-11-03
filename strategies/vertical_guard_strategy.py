@@ -1,4 +1,5 @@
 from core.strategy import Strategy
+from .flood_strategy import FloodStrategy
 
 class VerticalGuardStrategy(Strategy):
 
@@ -14,3 +15,8 @@ class VerticalGuardStrategy(Strategy):
                         return x
                     break      
         return self.guarded_strategy.place_token(token, board)
+
+# TODO: Exporting is awkward for a decorator.
+#       I'd like to have a way of doing this without hard-coding the decorated strategy.
+def export_strategy():
+    return VerticalGuardStrategy(FloodStrategy())
