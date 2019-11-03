@@ -5,14 +5,13 @@ from itertools import permutations
 from functools import reduce
 
 class RoundRobinTournament:
-    def __init__(self, players, view):
-        self.players = players
+    def __init__(self, game):
+        self.game = game
         self.matches = []
         self.results = {}
-        self.view = view
     
-    def _calc_match_permutations(self):
-        num_players = len(self.players)        
+    def _calc_match_permutations(self, players):
+        num_players = len(players)        
         for player in range(num_players):
             other_players = list(range(num_players))
             other_players.remove(player)
@@ -24,18 +23,18 @@ class RoundRobinTournament:
                 return True
         return False
     
-    def _clear_results(self):
+    def _clear_results(self, players):
         self.results.clear()
-        for player in self.players:
+        for player in players:
             self.results[player] = Score(0,0,0)
 
-    def _run_off_matches(self):
-        self._clear_results()
+    def _run_off_matches(self, players, view):
+        self._clear_results(players)
         for match in self.matches:
             game = ConnectFourGame(Board(width=7, height=6))
-            player1 = self.players[match[0]]
-            player2 = self.players[match[1]]
-            outcome = game.play(player1, player2, self.view)
+            player1 = players[match[0]]
+            player2 = players[match[1]]
+            outcome = game.play(player1, player2, view)
             self.results[player1] = self.results[player1].join(outcome[1] if outcome[0] == player1 else outcome[1].invert())
             self.results[player2] = self.results[player2].join(outcome[1] if outcome[0] == player2 else outcome[1].invert())
 
@@ -45,7 +44,7 @@ class RoundRobinTournament:
         [ranks.append("%s: %s" % (key, value)) for key, value in sorted_results]
         return ranks
 
-    def run(self):
-        self._calc_match_permutations()
-        self._run_off_matches()
+    def run(self, players, view):
+        self._calc_match_permutations(players)
+        self._run_off_matches(players, view)
         return self._get_ranking()
