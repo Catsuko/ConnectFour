@@ -10,7 +10,7 @@ class RandomStrategy(Strategy):
       self.board = board
       self._board_width()
       for x in range(1):
-        return random.randint(0,7)
+        return random.randint(0,6)
 
 
 def export_strategy():
