@@ -1,17 +1,15 @@
-from core.connect_four_game import ConnectFourGame
-from core.board import Board
+from core.score import Score
 from itertools import permutations
 from functools import reduce
 
 class RoundRobinTournament:
-    def __init__(self, players, view):
-        self.players = players
+    def __init__(self, game):
+        self.game = game
         self.matches = []
         self.results = {}
-        self.view = view
     
-    def _calc_match_permutations(self):
-        num_players = len(self.players)        
+    def _calc_match_permutations(self, players):
+        num_players = len(players)        
         for player in range(num_players):
             other_players = list(range(num_players))
             other_players.remove(player)
@@ -23,29 +21,27 @@ class RoundRobinTournament:
                 return True
         return False
     
-    def _clear_results(self):
+    def _clear_results(self, players):
         self.results.clear()
-        for player in self.players:
-            self.results[player] = []
+        for player in players:
+            self.results[player] = Score(0,0,0)
 
-    def _run_off_matches(self):
-        self._clear_results()
+    def _run_off_matches(self, players, view):
+        self._clear_results(players)
         for match in self.matches:
-            game = ConnectFourGame(Board(width=7, height=6))
-            player1 = self.players[match[0]]
-            player2 = self.players[match[1]]
-            winner = game.play(player1, player2, self.view)
-            loser = player2 if self.players[match[0]] == winner else player1
-            self.results[winner].append(loser)
-
+            player1 = players[match[0]]
+            player2 = players[match[1]]
+            outcome = self.game.play(player1, player2, view)
+            self.results[player1] = self.results[player1].join(outcome[1] if outcome[0] == player1 else outcome[1].invert())
+            self.results[player2] = self.results[player2].join(outcome[1] if outcome[0] == player2 else outcome[1].invert())
 
     def _get_ranking(self):
         ranks = []
-        [ranks.append((type(key).__name__, len(value))) for key, value in self.results.items()]
-        ranks.sort(key=lambda rank_tup: -rank_tup[1])
+        sorted_results = sorted(self.results.items(), key=lambda x: x[1], reverse=True)
+        [ranks.append("%s: %s" % (key, value)) for key, value in sorted_results]
         return ranks
 
-    def run(self):
-        self._calc_match_permutations()
-        self._run_off_matches()
+    def run(self, players, view):
+        self._calc_match_permutations(players)
+        self._run_off_matches(players, view)
         return self._get_ranking()
