@@ -62,9 +62,9 @@ The output of the `place_token` method should be the index of the column that yo
 
 To export your strategy there are two requirements:
 	1. Place your strategy in the `/strategies` directory
-	2. Add a `export_strategy` method to your python script
+	2. Add a `export_strategy` function to your python script
 
-The first requirement is straightforward to satisfy, the second just requires the addition of a simple function to the button of your script:
+Here is an example implementation of a Strategy with the `export_strategy` function included:
 
 ```python
 class MyStrategy(Strategy):
@@ -75,7 +75,7 @@ def export_strategy():
     return MyStrategy()
 ```
 
-This method will return an instance of your strategy when it has been selected.
+This function will return an instance of your strategy when needed. It is used when registering a player and selecting which strategy the player should use.
 
 ### Testing your Strategy
 
