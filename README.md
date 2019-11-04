@@ -33,6 +33,8 @@ python connect_four_tournament.py
 
 A tournament will play matches for each pair of players and then use the accumulated scores to determine a ranking. You can change the number of players by tweaking the `number_of_players` variable in `/connect_four_tournament.py`.
 
+## Strategies
+
 ### Writing your own Strategy
 
 To write a new strategy, add a new subclass of the `core.Strategy` class. It has a single responsibility, to determine which column the player should place their token in.
