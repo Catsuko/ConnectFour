@@ -1,27 +1,36 @@
 # ConnectFour
 
-Write your own strategy and compete against other players in a game of ConnectFour
+ConnectFour is a simple game that involves two players taking turns to place tokens in a grid. When one player assembles a line of four tokens, they win! Compete with friends and see who can write the best ConnectFour algorithm.
 
 ## Usage
 
-Run the game with:
-```python
-python console_connect_four.py
+The only pre-requisite needed to run ConnectFour is [python3](https://www.python.org/downloads/).
+
+### Playing a Game
+
+Once installed, navigate to the project directory and run a ConnectFour match by entering the following in the command line:
+
+```
+python connect_four_match.py
 ```
 
-Making some simple tweaks to `console_connect_four.py` can give neat results!
+Next register the first player's name and you will be asked to select a strategy. Each strategy presented is loaded from a strategy subclass in the `/strategies` directory. Strategies and how to implement them will be expanded upon further on but they are how a player determines which move they should make. 
 
-You can pit the bot against itself for a uneventful showdown:
-```python
-player_bot = Player(name="Bot", strategy=LeftToRightStrategy())
-game.play(player_bot, player_bot, game_view)
+Repeat the process for the second player and the match should begin!
+
+### Controlling a player with user input
+
+Select the `StdInStrategy` when presented with the strategy list and that player will be driven by user input via the command line. This can be useful when testing strategies you are implementing. A human vs human match can be set up by having both players select the `StdInStrategy`.
+
+### Running a Tournament
+
+Once multiple strategies have been implemented, you can run a round robin tournament to determine rankings by using the following command:
+
+```
+python connect_four_tournament.py
 ```
 
-Or play against a friend by having a player with the `StdInStrategy` play themselves:
-```python
-player_person = Player(name="Player", strategy=StdInStrategy())
-game.play(player_person, player_person, game_view)
-```
+A tournament will play matches for each pair of players and then use the accumulated scores to determine a ranking. You can change the number of players by tweaking the `number_of_players` variable in `/connect_four_tournament.py`.
 
 ### Writing your own Strategy
 
@@ -49,22 +58,28 @@ A `0` represents an empty spot, a `1` represents a token placed by the first pla
 
 The output of the `place_token` method should be the index of the column that you want to place your token in. Placing a token in a out-of-bounds index or into a column that is full will mean that you lose the game, so choose carefully!
 
+### Exporting your Strategy
+
+To export your strategy there are two requirements:
+	1. Place your strategy in the `/strategies` directory
+	2. Add a `export_strategy` method to your python script
+
+The first requirement is straightforward to satisfy, the second just requires the addition of a simple function to the button of your script:
+
+```python
+class MyStrategy(Strategy):
+
+	# ...Implementation
+	
+def export_strategy():
+    return MyStrategy()
+```
+
+This method will return an instance of your strategy when it has been selected.
+
 ### Testing your Strategy
 
-To test your strategy, import it into the `console_connect_four.py` file. If you had added `/strategies/example_strategy.py` then you would import it by adding the following line to the top of `console_connect_four.py`:
-```python
-from strategies.example_strategy import ExampleStrategy
-```
-
-From here, pass an instance of your strategy to one of the players and then run the file.
-```python
-#player1 = Player(name="Bot", strategy=LeftToRightStrategy())
-player1 = Player(name="Example Bot", strategy=ExampleStrategy())
-player2 = Player(name="Player", strategy=StdInStrategy())
-game.play(player1, player2, game_view)
-```
-
-See if it can beat `LeftToRightStrategy` and experiment with letting it go first and second.
+Once it is ready to be exported, test your strategy by selecting it at the start of a match. Try testing it against other algorithms to see how it fares and what its weaknesses are. Also try test it against yourself using the `StdInStrategy`.
 
 ### Example Implementation: LeftToRightStrategy
 
@@ -81,6 +96,8 @@ class LeftToRightStrategy(Strategy):
                 return x
         return -1
 
+def export_strategy():
+    return LeftToRightStrategy()
 ```
 
 If none of the top rows are empty then returning -1 essentially means giving up because it is not a valid column index.
