@@ -20,7 +20,8 @@ Repeat the process for the second player and the match should begin!
 
 ### Controlling a player with user input
 
-Select the `StdInStrategy` when presented with the strategy list and that player will be driven by user input via the command line. This can be useful when testing strategies you are implementing. A human vs human match can be set up by having both players select the `StdInStrategy`.
+Select the `StdInStrategy` when presented with the strategy list and that player will be driven by user input via the command line. This can be useful when testing strategies you are implementing. 
+A human vs human match can be set up by having both players select the `StdInStrategy`.
 
 ### Running a Tournament
 
@@ -61,8 +62,8 @@ The output of the `place_token` method should be the index of the column that yo
 ### Exporting your Strategy
 
 To export your strategy there are two requirements:
-	1. Place your strategy in the `/strategies` directory
-	2. Add a `export_strategy` function to your python script
+1. Place your strategy in the `/strategies` directory
+2. Add a `export_strategy` function to your python script
 
 Here is an example implementation of a Strategy with the `export_strategy` function included:
 
