@@ -72,7 +72,8 @@ Here is an example implementation of a Strategy with the `export_strategy` funct
 ```python
 class MyStrategy(Strategy):
 
-	# ...Implementation
+	def place_token(self, token, board):
+		return -1
 	
 def export_strategy():
     return MyStrategy()
