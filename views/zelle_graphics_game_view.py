@@ -26,8 +26,6 @@ class ZelleGraphicsGameView:
                     self.circles.append(Circle(Point(x * 50 + 200, y * 50 + 175), 8))
                     self.circles[index].draw(window)
                 self.circles[index].setFill(self.colors[board[y][x]])
-
-        window.redraw()
         time.sleep(self.delay)
 
     def print_result(self, result):

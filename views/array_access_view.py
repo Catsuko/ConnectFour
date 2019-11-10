@@ -21,7 +21,6 @@ class ArrayAccessView:
                 if position[1] == y:
                     chosen_color = "red" if position[0] == x else "yellow"
                 self.squares[i].setFill(chosen_color)
-        window.redraw()
         time.sleep(self.delay)
         
     def cached_window(self):
