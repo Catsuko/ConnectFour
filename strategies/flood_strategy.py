@@ -1,4 +1,5 @@
 from core.strategy import Strategy
+from .vertical_guard_strategy import VerticalGuardStrategy
 
 class FloodStrategy(Strategy):
 
@@ -11,4 +12,4 @@ class FloodStrategy(Strategy):
         return -1
 
 def export_strategy():
-    return FloodStrategy()
+    return VerticalGuardStrategy(FloodStrategy())
