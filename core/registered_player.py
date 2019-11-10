@@ -1,9 +1,9 @@
 class RegisteredPlayer:
 
-    def __init__(self, strategies):
+    def __init__(self, strategies, name=None):
         self.strategies = strategies
         self.strategy_index = None
-        self.name = None
+        self.name = name
 
     def place_token(self, token, board):
         return self.selected_strategy().place_token(token, board)
