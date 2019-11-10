@@ -17,3 +17,6 @@ class TrackedRow():
 
     def read_all(self):
         return [(x, self.row_index) for x in self.access_indices]
+
+    def count(self, item):
+        return self.arr.count(item)
