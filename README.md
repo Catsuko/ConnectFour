@@ -21,7 +21,14 @@ Repeat the process for the second player and the match should begin!
 ### Controlling a player with user input
 
 Select the `StdInStrategy` when presented with the strategy list and that player will be driven by user input via the command line. This can be useful when testing strategies you are implementing. 
-A human vs human match can be set up by having both players select the `StdInStrategy`.
+A human vs human game can be set up by having both players select the `StdInStrategy`.
+
+### Playing a Best of 3 Series
+
+In a best of 3 series, a maximum of 3 games will be played to determine the winner. After each game, the player going first will be alternated so one player is not given an advantage. Play a series by using the `-n` argument when starting a match, for example:
+```
+python connect_four_match.py -n 3
+```
 
 ### Running a Tournament
 
