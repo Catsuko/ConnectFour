@@ -3,15 +3,12 @@ import random
 
 class RandomStrategy(Strategy):
 
-    def _board_width(self):
-      self.width = len(self.board[0])
-
     def place_token(self, token, board):
-      self.board = board
-      self._board_width()
-      for x in range(1):
-        return random.randint(0,6)
-
+      column = -1
+      while column < 0:
+        random_int = random.randint(0,6)
+        column = random_int if board[0][random_int] == 0 else -1
+      return column
 
 def export_strategy():
     return RandomStrategy()
