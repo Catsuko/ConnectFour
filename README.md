@@ -113,5 +113,11 @@ def export_strategy():
 
 If none of the top rows are empty then returning -1 essentially means giving up because it is not a valid column index.
 
+## Strategy Visualization
 
+Check out how your strategy considers the board by running the following command:
+```
+python training_dummy.py
+```
+Select the target strategy and then face off against it in a single match. When the selected strategy is selecting a column to place its token, a separate window will display how it is accessing the board. The red square denotes the token which indices (x,y) are being used. Serves no real purpose other than to look cool!
 
