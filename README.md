@@ -93,7 +93,7 @@ This function will return an instance of your strategy when needed. It is used w
 Once it is ready to be exported, test your strategy by selecting it at the start of a match. Try testing it against other algorithms to see how it fares and what its weaknesses are. Also try test it against yourself using the `StdInStrategy`.
 
 You can also test your strategy's decision making in a variety of single-move scenarios designed to cover fundamentals in attacking and defending. This is accomplished by running the `fundamentals_tests.py` script and supplying the name of your strategy's module. 
-```python
+```bash
 # Run the fundamentals tests for left_to_right_strategy
 python fundamentals_tests.py left_to_right_strategy
 
