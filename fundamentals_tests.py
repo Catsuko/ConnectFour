@@ -49,7 +49,7 @@ tests = [
    ("V Win from Middle", [3], [3, 0, 3, 6, 3, 0]),
    ("V Win from Left Edge", [0], [0, 1, 0, 4, 0, 6]),
    ("V Win from Right Edge", [6], [6, 1, 6, 4, 6, 0]),
-   ("V Win from Top", [3], [3, 6, 3, 3, 0, 3, 6, 3, 1]),
+   ("V Win from Top", [3], [3, 6, 3, 3, 0, 3, 6, 3, 0]),
    ("V Win with Equal Stacks", [4], [4, 3, 4, 3, 4, 3]),
    # Vertical Defending
    ("V Block from Middle", [3], [3, 0, 3, 6, 3]),
@@ -59,7 +59,7 @@ tests = [
    # Horizontal Attacking
    ("H Win from Left Edge", [3], [0, 0, 1, 1, 2, 0]),
    ("H Win from Right Edge", [3], [6, 6, 5, 5, 4, 6]),
-   ("H Win from Middle", [2, 5], [3, 0, 2, 6, 4, 0]),
+   ("H Win from Middle", [1, 5], [3, 0, 2, 6, 4, 0]),
    ("H Win from Second Row", [6], [5, 5, 3, 3, 0, 4, 5, 4, 0, 6, 4]),
    # Horizontal Defending
    ("H Block from Left Edge", [3], [0, 0, 1, 1, 2]),
