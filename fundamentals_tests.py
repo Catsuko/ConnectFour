@@ -69,7 +69,8 @@ tests = [
    ("H Block in Middle", [2], [3, 5, 1, 0, 4]),
    # Prevention
    ("H Prevention from Left Middle", [0, 1, 2, 4, 5, 6], [0, 1, 0, 0, 1, 2, 2]),
-   ("D Prevention from Left Edge", [0, 1, 3, 4, 5, 6], [3, 0, 3, 0, 2, 1, 0, 1, 3, 3])
+   ("D Prevention from Left Edge", [0, 1, 3, 4, 5, 6], [3, 0, 3, 0, 2, 1, 0, 1, 3, 3]),
+   ("Open Ended H Prevention", [1, 4, 5], [0, 2, 1, 3, 5, 4, 0, 3, 0, 0, 3, 2]) 
 ]
 
 results = []
