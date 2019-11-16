@@ -6,6 +6,7 @@ class ArgsGameConfig:
         # TODO: Don't do work in the ctor, how can this be improved?
         parser.add_argument('-n', type=int, help="number of games to play")
         parser.add_argument('-d', type=float, help="delay in seconds between turns")
+        parser.add_argument('-p', type=int, help="number of players to play (tournaments only)")
         self.args = parser.parse_args()
         
     def number_of_games(self):
@@ -13,3 +14,6 @@ class ArgsGameConfig:
 
     def turn_delay(self):
         return self.args.d if self.args.d and self.args.d > 0 else self.default_delay
+
+    def number_of_players(self):
+        return self.args.p if self.args.p and self.args.p > 2 else 2
