@@ -67,6 +67,20 @@ tests = [
    ("H Block at Left Edge", [0], [1, 6, 2, 4, 3]),
    ("H Block at Right Edge", [6], [3, 2, 4, 0, 5]),
    ("H Block in Middle", [2], [3, 5, 1, 0, 4]),
+   # Diagonal Attacking
+   ("D Win Upwards from Left Edge", [3], [0,0,3,1,1,2,3,2,2,3]),
+   ("D Win Downwards from Middle", [0], [3,1,1,2,3,2,2,1,2,3,3,2]),
+   ("D Win Downwards from Left Edge", [3], [2,2,1,0,1,1,6,0,0,0,6]),
+   ("D Win Upwards from Middle", [6], [4,4,5,6,5,5,6,6,0,6,0]),
+   ("D Win Broken Upwards from Middle", [5], [3,4,4,5,5,6,6,6,6,0]),
+   ("D Win Broken Downwards from Middle", [4], [3,3,3,0,4,4,6,5,5,5,6,6,3,0]),
+   # Diagonal Defending
+   ("D Block Upwards from Left Edge", [3], [0,0,3,1,1,2,3,2,2,3,0]),
+   ("D Block Downwards from Middle", [0], [3,1,1,2,3,2,2,1,2,3,3,2,6]),
+   ("D Block Downwards from Left Edge", [3], [2,2,1,0,1,1,6,0,0,0]),
+   ("D Block Upwards from Middle", [6], [4,4,5,6,5,5,6,6,0,6,0,1]),
+   ("D Block Broken Upwards from Middle", [5], [3,4,4,5,0,5,6,6,6,0,6]),
+   ("D Block Broken Downwards from Middle", [4], [3,3,3,0,4,4,6,5,5,5,6,6,3,0]),
    # Prevention
    ("H Prevention from Left Middle", [0, 1, 2, 4, 5, 6], [0, 1, 0, 0, 1, 2, 2]),
    ("D Prevention from Left Edge", [0, 1, 3, 4, 5, 6], [3, 0, 3, 0, 2, 1, 0, 1, 3, 3]),
