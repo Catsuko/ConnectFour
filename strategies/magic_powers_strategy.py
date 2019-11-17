@@ -14,7 +14,6 @@ class MagicPowersStrategy(Strategy):
         height = len(board)
         column_priority = [0] * width
         for x in range(width):
-            stack = []
             for y in range(height - 1, -1, -1):
                 if board[y][x] == 0:
                     v_weight = self.v_weight(self.max_by_v(x,y,board))
@@ -25,7 +24,7 @@ class MagicPowersStrategy(Strategy):
                     break
                 elif y == 0:
                     column_priority[x] = -999
-        return self.index_of_max(column_priority)
+        return sorted(enumerate(column_priority), key=lambda kv: -kv[1])[0][0]
 
     def longest_line_from(self, x, y, board, step):
         line = []
@@ -60,9 +59,6 @@ class MagicPowersStrategy(Strategy):
 
     def max_by_d_down(self, x, y, board):
         return self.longest_line_size(x, y, board, lambda sx,sy: (sx-1, sy+1), lambda sx,sy: (sx+1, sy-1))
-            
-    def index_of_max(self, li):
-        return sorted(enumerate(li), key=lambda kv: -kv[1])[0][0]
 
 def export_strategy():
     return MagicPowersStrategy()
