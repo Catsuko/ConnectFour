@@ -3,12 +3,12 @@ import math
 
 class MagicPowersStrategy(Strategy):
 
-    def __init__(self):
-        self.v_weight = lambda n: 3**n - 1
-        self.h_weight = lambda n: 4.1**n - 1
-        self.d_weight = lambda n: 3.05**n - 1
-        self.p_weight = lambda n: 2.95**n - 1
-
+    def __init__(self, v, h, d, p):
+        self.v = v
+        self.h = h
+        self.d = d
+        self.p = p
+    
     def place_token(self, token, board):
         width = len(board[0])
         height = len(board)
@@ -59,6 +59,24 @@ class MagicPowersStrategy(Strategy):
 
     def max_by_d_down(self, x, y, board):
         return self.longest_line_size(x, y, board, lambda sx,sy: (sx-1, sy+1), lambda sx,sy: (sx+1, sy-1))
+ 
+    def v_weight(self, n):
+        return self.calculate_weight(n, self.v)
+
+    def h_weight(self, n):
+        return self.calculate_weight(n, self.h)
+
+    def d_weight(self, n):
+        return self.calculate_weight(n, self.d)
+
+    def p_weight(self, n):
+        return self.calculate_weight(n, self.p)
+
+    def calculate_weight(self, n, weight_base):
+        return weight_base**n - 1
+
+    def __str__(self):
+        return "%s %.2f/%.2f/%.2f/%.2f" % (self.__class__.__name__, self.v, self.h, self.d, self.p)
 
 def export_strategy():
-    return MagicPowersStrategy()
+    return MagicPowersStrategy(3, 4.1, 3.05, 2.95)
