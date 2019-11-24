@@ -1,5 +1,6 @@
 from core.strategy import Strategy
 import math
+import random
 
 class MagicPowersStrategy(Strategy):
 
@@ -78,5 +79,12 @@ class MagicPowersStrategy(Strategy):
     def __str__(self):
         return "%s %.2f/%.2f/%.2f/%.2f" % (self.__class__.__name__, self.v, self.h, self.d, self.p)
 
+    def mutate(self, lower, upper):
+        mutate_weight = lambda w: random.uniform(max(0, w - lower), min(10,w + upper))
+        weights = [self.v, self.h, self.d, self.p]
+        m_index = random.randrange(0, 4)
+        weights[m_index] = mutate_weight(weights[m_index])
+        return MagicPowersStrategy(weights[0], weights[1], weights[2], weights[3])
+
 def export_strategy():
-    return MagicPowersStrategy(3, 4.1, 3.05, 2.95)
+    return MagicPowersStrategy(2.97, 7.39, 2.22,  5.22)
